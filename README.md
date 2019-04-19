@@ -591,7 +591,7 @@ sprite.switch_costume_to(4) # tries to switch costume to costume at index 4
 Required:
 `costume` - Can be one of:
 - `[an integer]` - Switches to the costume with the index of the integer given. If integer is out of range of costume indexes, it loops around (using modulo).
-- `[a string]` - Switches to the costume with the name of the string given. If no costume has that name, it tries to use the string as an index for a costume. If string is not an integer, the costume doesn't change.
+- `[a string]` - Switches to the costume with the name of the string given. If no costume has that name, it tries to use the string as an index for a costume. If string is not an index, the costume doesn't change.
 
 <br>
 
