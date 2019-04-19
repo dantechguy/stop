@@ -59,6 +59,9 @@ Create a new project (and window), and a sprite:
 
 ## Project Class
 ### Create Project Object:
+
+The project class is the foundation of a project. It creates its own window upon run.
+
 ```python
 project = stop.Project(
   fps=60
@@ -98,7 +101,7 @@ stop.project.switch_backdrop_to(
 
 # EXAMPLE
 project.switch_backdrop_to("space") # tries to switch to backdrop with name 'space'
-prohect.switch_backdrop_to(4) # tries to switch backdrop to backdrop at index 4
+project.switch_backdrop_to(4) # tries to switch backdrop to backdrop at index 4
 ```
 Required:
 `backdrop` - Can be one of:
@@ -117,6 +120,96 @@ stop.project.next_backdrop()
 # EXAMPLE
 project.next_backdrop() # switches to the next backdrop
 ```
+
+<br>
+
+#### stop.project.green_flag
+
+Adds a function to the 'green flag' event. It runs whenever the program starts.
+
+```python
+stop.project.green_flag(
+  function
+)
+
+# EXAMPLE
+def some_function():
+  print('\'green flag\' event')
+
+project.green_flag(some_function) # adds 'some_function' to 'green flag' event
+```
+Required:
+`function` - The function to be added the 'green flag' event.
+
+<br>
+
+#### stop.project.key_pressed
+
+Adds a function to the 'key pressed' event. It runs whenever a given key is pressed.
+
+```python
+stop.project.key_pressed(
+  function,
+  key
+)
+
+# EXAMPLE
+def some_function():
+  print('\'key pressed\' event')
+
+project.key_pressed(some_function, 'space') # adds 'some_function' to 'key pressed' event
+```
+Required:
+`function` - The function to be added the 'key pressed' event.
+`key` - The key that will activate the event. Valid keys are:
+- Letters a to z
+- Numbers 0 to 9
+- `"space"`
+- `"up_arrow", "down_arrow", "left_arrow", "right_arrow"`
+
+<br>
+
+#### stop.project.sprite_clicked
+
+Adds a function to the 'sprite clicked' event. It runs whenever a given sprite is clicked on.
+
+```python
+stop.project.sprite_clicked(
+  function,
+  sprite
+)
+
+# EXAMPLE
+def some_function():
+  print('\'sprite clicked\' event')
+
+project.sprite_clicked(some_function, sprite) # adds 'some_function' to 'sprite clicked' event
+```
+Required:
+`function` - The function to be added the 'sprite clicked' event.
+`sprite` - The sprite that will activate the event.
+
+<br>
+
+#### stop.project.backdrop_switches_to
+
+Adds a function to the 'backdrop switched to' event. It runs whenever the backdrop is changed to a given name.
+
+```python
+stop.project.backdrop_switches_to(
+  function,
+  backdrop
+)
+
+# EXAMPLE
+def some_function():
+  print('\'backdrop switched to\' event')
+
+project.backdrop_switches_to(some_function, sprite) # adds 'some_function' to 'backdrop switched to' event
+```
+Required:
+`function` - The function to be added the 'backdrop switched to' event.
+`backdrop` - The backdrop name that will activate the event.
 
 <br>
 
@@ -572,3 +665,35 @@ stop.sprite.hide()
 # EXAMPLE
 sprite.hide() # makes the sprite invisible
 ```
+
+<br>
+
+## Math Methods
+### :
+```python
+project = stop.Project(
+  fps=60
+)
+```
+Optional:
+`fps` - Changes project's frame rate if specified.
+
+### Methods
+
+#### stop.project.wait
+
+Pauses the current script for a given amount of time.
+
+```python
+stop.project.wait(
+  seconds=False
+)
+
+# EXAMPLE
+project.wait() # waits one frame
+project.wait(1) # waits one second
+```
+Optional:
+`seconds` - If 'false' it will wait one frame, otherwise it will wait the time specified in seconds.
+
+<br>
