@@ -17,10 +17,34 @@ Install via PIP:
 
 `python3 -m pip install stop`
 
-Create a new project and a new window.
+Create a new project (and window), and a sprite:
 
  ```python
  import stop
  project = stop.Project()
  sprite = stop.Sprite(project)
  ```
+## Documentation
+- [Project Class](#project-class)
+- [Sprite Class](#sprite-class)
+- [Scratch Maths](#scratch-maths)
+
+## Project Class
+
+### Create a project object:
+
+```python
+project = stop.Project(
+  fps=60  # optional, specifies custom project fps
+)
+```
+
+
+
+
+
+## Sprite Class
+
+```python
+sprite = stop.Sprite(project, )
+```
