@@ -2,3 +2,4 @@
 - add project 'broadcast' method
 - add project 'broadcast and wait' method
 - add project 'run' method
+- add math methods to documentation
