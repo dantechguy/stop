@@ -74,9 +74,8 @@ class SpriteCanvas:
             y = None
         else:
             # use system to find other sprite coordinates
-            sprite = self.main.sprites[option]
-            x = sprite.x
-            y = sprite.y
+            x = option.x
+            y = option.y
         self.x = x
         self.y = y
         self.update_position()
@@ -98,15 +97,16 @@ class SpriteCanvas:
             y = None
         else:
             # use system to find other sprite coordinates
-            x = None
-            y = None
+            x = option.x
+            y = option.y
         self.x = x
         self.y = y
 
-    def glide_secs_to_x_y(self, parameters):  # x, y
+    def glide_secs_to_x_y(self, parameters):  # x, y, seconds
         # work - do replace 'glide' with a 'for loop + goto'
         self.x = parameters[0]
         self.y = parameters[1]
+        seconds = parameters[2]
 
     def point_in_direction(self, parameters):  # direction
         self.direction = parameters[0]
@@ -120,8 +120,8 @@ class SpriteCanvas:
             target_y = None
         else:
             # use system to find other sprite coordinates
-            target_x = None
-            target_y = None
+            target_x = option.x
+            target_y = option.y
         x = target_x - self.x
         y = target_y - self.y
         angle = (y / x).atan()
@@ -151,13 +151,18 @@ class SpriteCanvas:
         self.rotation_style = option
 
     def say_for_seconds(self, parameters): # use global function?
-        pass
+        speech = parameters[0]
+        seconds = parameters[0]
 
     def say(self, parameters):
-        pass
+        speech = parameters[0]
 
     def think_for_seconds(self, parameters):
-        pass
+        thought = parameters[0]
+        seconds = parameters[0]
+
+    def think(self, parameters):
+        thought = parameters[0] 
 
     def switch_costume_to(self, parameters):  # costume
         costume = parameters[0]
@@ -178,10 +183,10 @@ class SpriteCanvas:
         self.update_sprite()
 
     def switch_backdrop_to(self, parameters):
-        pass
+        # dont use, use method in project class
 
     def next_backdrop(self, parameters):
-        pass
+        # dont use, use method in project class
 
     def change_size_by(self, parameters):  # percentage
         percentage = parameters[0]
@@ -248,11 +253,11 @@ class SpriteCanvas:
 
 
     def update_rotation(self):
-        if self.rotation_style == "all around":
+        if self.rotation_style == "all_around":
             self.pil_img_edited = self.pil_img_edited.rotate(int(0-self.direction)+90, expand=1, resample=Image.BICUBIC)
-        elif self.rotation_style == "dont rotate":
+        elif self.rotation_style == "dont_rotate":
             pass
-        elif self.rotation_style == "left-right":
+        elif self.rotation_style == "left_right":
             if self.direction < 0:
                 self.pil_img_edited = self.pil_img_edited.transpose(Image.FLIP_LEFT_RIGHT)
 
