@@ -27,7 +27,7 @@ Create a new project (and window), and a sprite:
 ## Documentation
 - [stop.project](#project-class)
   - [wait](#stopprojectwait)
-  - [switch_backdrop_to](#stopprojectswitch-backdrop-to)
+  - [switch_backdrop_to](#stopprojectswitch_backdrop_to)
   - [next_backdrop](#stopprojectnext-backdrop)
 - [stop.sprite](#sprite-class)
   - [move_steps](#stopspritemove_steps)
