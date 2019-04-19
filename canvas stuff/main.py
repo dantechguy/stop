@@ -7,16 +7,16 @@ project = Project(fps=30)
 cat = Sprite(project)
 
 
-def cat_spins_around():
-    cat.set_size_to(50)
-    cat.go_to_x_y(0, 0)
-    cat.point_in_direction(90)
-    while True:
-        cat.move_steps(10)
-        cat.turn_right_degrees(10)
-        project.wait(0.1)
+# def cat_spins_around():
+#     cat.set_size_to(50)
+#     cat.go_to_x_y(0, 0)
+#     cat.point_in_direction(90)
+#     while True:
+#         cat.move_steps(10)
+#         cat.turn_right_degrees(10)
+#         project.wait(0.1)
 
-project.green_flag(cat_spins_around)
+# project.green_flag(cat_spins_around)
 
 
 project.run()
