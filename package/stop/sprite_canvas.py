@@ -1,10 +1,6 @@
 import tkinter as tk
-import scratch_math as v
+import stop.scratch_math as v
 import random
-import math
-import time
-import threading
-import queue
 from PIL import Image, ImageTk
 
 class SpriteCanvas:

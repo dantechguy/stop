@@ -1,13 +1,4 @@
 import tkinter as tk
-from fluid_var import fv
-import random
-import math
-import time
-import threading
-import queue
-
-import sprite_canvas
-
 
 class CanvasObject:
     def __init__(self):
@@ -25,27 +16,3 @@ class CanvasObject:
 
     def run(self):
         self.root.mainloop()
-
-
-
-
-# root = tk.Tk()
-# canv = CanvasObject(root)
-
-
-
-
-# def func():
-#     for i in range(10):
-#         print(i)
-#         time.sleep(1)
-
-
-
-# thread1 = threading.Thread(target=func, daemon=True) 
-
-# thread1.start()
-
-
-# canv.run() 
-

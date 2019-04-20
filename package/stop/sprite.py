@@ -1,4 +1,4 @@
-import sprite_canvas
+import stop.sprite_canvas
 # import sprite_code
 
 

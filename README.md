@@ -191,12 +191,12 @@ Required:
 
 <br>
 
-#### stop.project.backdrop_switches_to
+#### stop.project.backdrop_switched_to
 
 Adds a function to the 'backdrop switched to' event. It runs whenever the backdrop is changed to a given name.
 
 ```python
-stop.project.backdrop_switches_to(
+stop.project.backdrop_switched_to(
   function,
   backdrop
 )
@@ -205,11 +205,51 @@ stop.project.backdrop_switches_to(
 def some_function():
   print('\'backdrop switched to\' event')
 
-project.backdrop_switches_to(some_function, sprite) # adds 'some_function' to 'backdrop switched to' event
+project.backdrop_switched_to(some_function, sprite) # adds 'some_function' to 'backdrop switched to' event
 ```
 Required:
 `function` - The function to be added the 'backdrop switched to' event.
 `backdrop` - The backdrop name that will activate the event.
+
+<br>
+
+#### stop.project.broadcast_recieved
+
+Adds a function to the 'broadcast recieved' event. It runs whenever a broadcast of a given name is sent and recieved.
+
+```python
+stop.project.broadcast_recieved(
+  function,
+  broadcast
+)
+
+# EXAMPLE
+def some_function():
+  print('\'broadcast recieved\' event')
+
+project.broadcast_recieved(some_function, 'some broadcast') # adds 'some_function' to 'broadcast recieved' event
+```
+Required:
+`function` - The function to be added the 'broadcast recieved' event.
+`broadcast` - The name of the broadcast that will activate the event.
+
+<br>
+
+#### stop.project.send_broadcast
+
+Emits a broadcast with a given name.
+
+```python
+stop.project.send_broadcast(
+  broadcast
+)
+``` ```
+# EXAMPLE
+project.broadcast_recieved(some_function, 'some broadcast') # adds 'some_function' to 'broadcast recieved' event
+```
+Required:
+`function` - The function to be added the 'broadcast recieved' event.
+`broadcast` - The name of the broadcast that will activate the event.
 
 <br>
 
