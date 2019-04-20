@@ -243,7 +243,8 @@ Emits a broadcast with a given name.
 stop.project.send_broadcast(
   broadcast
 )
-``` ```
+```
+```
 # EXAMPLE
 project.broadcast_recieved(some_function, 'some broadcast') # adds 'some_function' to 'broadcast recieved' event
 ```
