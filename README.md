@@ -77,6 +77,8 @@ project = stop.Project(
 Optional:
 `fps` - Changes project's frame rate if specified.
 
+<br>
+
 ### Methods
 
 #### stop.project.wait
@@ -312,6 +314,8 @@ sprite= stop.Sprite(
 ```
 Required:
 `project` - The associated project object, which the sprite will be in.
+
+<br>
 
 ### Methods
 #### stop.sprite.move_steps
