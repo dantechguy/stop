@@ -1334,5 +1334,3 @@ stop.math.ten2x(-2) # results in 0.01
 ```
 Required:
 `val` - Any number, can be string
-
-<br>
