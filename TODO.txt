@@ -1,5 +1,3 @@
-- add project 'broadcast' method
-- add project 'broadcast and wait' method
-- add project 'run' method
 - add math methods to documentation
 - check and fix project.wait
+- fix sprite costumes and project background

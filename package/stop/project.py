@@ -1,4 +1,4 @@
-import stop.canvas_object
+from . import canvas_object
 import queue
 import threading
 import time

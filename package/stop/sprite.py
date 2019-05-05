@@ -1,15 +1,19 @@
-import stop.sprite_canvas
+from . import sprite_canvas
 # import sprite_code
 
 
 class Sprite:
-    def __init__(self, project):
+    def __init__(self, project, costumes=False):
         self.project = project
 
-        costumes = [
-            {"file":"106798711d0220a08cca12e750468e2b.png", "name":"costume1"}, 
-            {"file":"27a0bf89451a32a7eea1930e3e2bfce4.png", "name":"12"}
-        ]
+        if not costumes:
+            path = "{0}/../assets/".format(__file__)
+            costumes = [
+                {"file":"{0}costume1.png".format(path), "name":"costume1"}, 
+                {"file":"{0}costume2.png".format(path), "name":"costume2"}
+            ]
+
+        
         self.sprite_canvas = sprite_canvas.SpriteCanvas(
             project,                       # project
             project.canvas_object,         # canvas object

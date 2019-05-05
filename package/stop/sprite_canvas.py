@@ -1,7 +1,8 @@
 import tkinter as tk
-import stop.scratch_math as v
+from . import scratch_math as v
 import random
 from PIL import Image, ImageTk
+import os 
 
 class SpriteCanvas:
     def __init__(self, project, canvas, name, layer_order, visible, x, y, size, direction, draggable, rotation_style, costumes, current_costume):
@@ -17,7 +18,7 @@ class SpriteCanvas:
         self.direction =        direction           # -179 to 180 angle
         self.draggable =        draggable           # True / False
         self.rotation_style =   rotation_style      # Left-Right / Dont Rotate / All Around
-        self.costumes =         costumes            # array of image names
+        self.costumes =         costumes            # dict of name and image dir
         self.current_costume =  current_costume     # num
         # NOT BUILT INS
         # creating canvas image
@@ -163,7 +164,7 @@ class SpriteCanvas:
             try:
                 self.switch_costume_to_str(costume)
             except ValueError:
-                self.switch_costume_to_num(costume)
+                self.switch_costume_to_num(int(float(costume)))
         self.update_sprite()
 
 
@@ -220,7 +221,7 @@ class SpriteCanvas:
         self.current_costume = index
 
     def switch_costume_to_num(self, costume):
-        if costume.value in range(len(self.costumes)):
+        if costume in range(len(self.costumes)):
             self.current_costume = costume
         else:
             self.current_costume = costume % len(self.costumes)
@@ -240,7 +241,7 @@ class SpriteCanvas:
         self.pil_img_edited = self.pil_img.resize(new_size)
 
     def update_costume(self):
-        self.pil_img = Image.open("assets/{0}".format(self.costumes[int(self.current_costume)-1]["file"]))
+        self.pil_img = Image.open(self.costumes[int(self.current_costume)-1]["file"])
 
 
     def update_rotation(self):

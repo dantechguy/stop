@@ -1,3 +1,3 @@
-from stop.project import Project
-from stop.sprite import Sprite
-import stop.scratch_math as math
+from .project import Project
+from .sprite import Sprite
+from . import scratch_math as math

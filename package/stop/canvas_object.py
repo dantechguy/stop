@@ -10,7 +10,7 @@ class CanvasObject:
         self.root.resizable(False, False)
         # init
         self.frame_rate = 2
-        self.root.iconbitmap("../favicon.ico")
+        self.root.iconbitmap("{0}/../favicon.ico".format(__file__))
         self.canvas = tk.Canvas(self.root, width=self.width, height=self.height, bg="#fff", highlightthickness=0)
         self.canvas.pack()
 

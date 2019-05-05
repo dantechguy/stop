@@ -1,13 +1,31 @@
 import math
 
+def typ(val):
+    try:
+        if int(float(val)) == float(val):
+            return "int"
+        else:
+            return "float"
+    except ValueError:
+        return "str"
+
+def c2t(val): # convert to type
+    if typ(val) == 'str':
+        return str(val)
+    elif typ(val) == 'float':
+        return float(val)
+    elif typ(val) == 'int':
+        return int(val)
+
+
 def s20(val): # string to 0
-    if type(val).__name__ == "str":
+    if typ(val) == "str":
         return 0
     else:
-        return val
+        return c2t(val)
 
-def typ(value):
-    return(type(value).__name__)
+# def typ(value):
+#     return(type(value).__name__)
 
 def iof(val): # int or float
     if float(int(val)) == float(val): # then num is int
@@ -42,7 +60,7 @@ def compare_char_values(val1, val2):
 # ACTUAL FUNCTIONS START HERE
 
 def str(val):
-    if typ(val).__name__ == "bool":
+    if typ(val) == "bool":
         return str(val).lower()
     else:
         return str(val)
@@ -97,7 +115,7 @@ def gt(val1, val2):
     return result
 
 def eq(val1, val2):
-    result = val1 == val2
+    result = c2t(val1) == c2t(val2)
     return result
 
 def join(val1, val2):

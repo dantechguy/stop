@@ -12,9 +12,9 @@ A text based programming language
 Those who know Scratch, and are looking to move on to Python
 
 ## Getting Started
-Install via PIP:
+Install via PIP from [PyPI](https://pypi.org/project/stop):
 
-`python3 -m pip install stop`
+`python3 -m pip install stop` or `py -m pip install stop` or `python -m pip install stop` or `pip install stop`
 
 Create a new project (and window), and a sprite:
 
@@ -29,6 +29,13 @@ Create a new project (and window), and a sprite:
   - [wait](#stopprojectwait)
   - [switch_backdrop_to](#stopprojectswitch_backdrop_to)
   - [next_backdrop](#stopprojectnext_backdrop)
+  - [green_flag](#stopprojectgreen_flag)
+  - [key_pressed](#stopprojectkey_pressed)
+  - [sprite_clicked](#stopprojectsprite_clicked)
+  - [backdrop_switched_to](#stopprojectbackdrop_switched_to)
+  - [broadcast_recieved](#stopprojectbroadcast_recieved)
+  - [send_broadcast](#stopprojectsend_broadcast)
+  - [send_broadcast_and_wait](#stopprojectsend_broadcast_and_wait)
 - [stop.sprite](#sprite-class)
   - [move_steps](#stopspritemove_steps)
   - [turn_right_degrees](#stopspriteturn_right_degrees)
@@ -80,7 +87,8 @@ Pauses the current script for a given amount of time.
 stop.project.wait(
   seconds=False
 )
-
+```
+```python
 # EXAMPLE
 project.wait() # waits one frame
 project.wait(1) # waits one second
@@ -98,7 +106,8 @@ Changes the background image, to a given one.
 stop.project.switch_backdrop_to(
   backdrop
 )
-
+```
+```python
 # EXAMPLE
 project.switch_backdrop_to("space") # tries to switch to backdrop with name 'space'
 project.switch_backdrop_to(4) # tries to switch backdrop to backdrop at index 4
@@ -116,7 +125,8 @@ Changes the background image to the next index.
 
 ```python
 stop.project.next_backdrop()
-
+```
+```python
 # EXAMPLE
 project.next_backdrop() # switches to the next backdrop
 ```
@@ -131,7 +141,8 @@ Adds a function to the 'green flag' event. It runs whenever the program starts.
 stop.project.green_flag(
   function
 )
-
+```
+```python
 # EXAMPLE
 def some_function():
   print('\'green flag\' event')
@@ -152,7 +163,8 @@ stop.project.key_pressed(
   function,
   key
 )
-
+```
+```python
 # EXAMPLE
 def some_function():
   print('\'key pressed\' event')
@@ -178,7 +190,8 @@ stop.project.sprite_clicked(
   function,
   sprite
 )
-
+```
+```python
 # EXAMPLE
 def some_function():
   print('\'sprite clicked\' event')
@@ -200,7 +213,8 @@ stop.project.backdrop_switched_to(
   function,
   backdrop
 )
-
+```
+```python
 # EXAMPLE
 def some_function():
   print('\'backdrop switched to\' event')
@@ -222,7 +236,8 @@ stop.project.broadcast_recieved(
   function,
   broadcast
 )
-
+```
+```python
 # EXAMPLE
 def some_function():
   print('\'broadcast recieved\' event')
@@ -244,13 +259,47 @@ stop.project.send_broadcast(
   broadcast
 )
 ```
-```
+
+```python
 # EXAMPLE
-project.broadcast_recieved(some_function, 'some broadcast') # adds 'some_function' to 'broadcast recieved' event
+project.send_broadcast('some broadcast') # sends broadcast 'some broadcast'
 ```
 Required:
-`function` - The function to be added the 'broadcast recieved' event.
-`broadcast` - The name of the broadcast that will activate the event.
+`broadcast` - The name of the broadcast that will be sent.
+
+<br>
+
+#### stop.project.send_broadcast_and_wait
+
+Emits a broadcast with a given name, and pauses current script until all scripts run from it are complete.
+
+```python
+stop.project.send_broadcast_and_wait(
+  broadcast
+)
+```
+
+```python
+# EXAMPLE
+project.send_broadcast_and_wait('some broadcast') # sends broadcast 'some broadcast' and waits
+```
+Required:
+`broadcast` - The name of the broadcast that will be sent.
+
+<br>
+
+#### stop.project.run
+
+Starts the window, and begins the project.
+
+```python
+stop.project.run()
+```
+
+```python
+# EXAMPLE
+project.run() # begins the project
+```
 
 <br>
 
@@ -273,7 +322,8 @@ Moves the sprite 'forward' in the direction it is facing.
 stop.sprite.move_steps(
   steps
 )
-
+```
+```python
 # EXAMPLE
 sprite.move_steps(10) # moves sprite 10 steps
 ```
@@ -290,7 +340,8 @@ Turns the sprite to the right.
 stop.sprite.turn_right_degrees(
   degrees
 )
-
+```
+```python
 # EXAMPLE
 sprite.turn_right_degrees(90) # turns sprite 90 degrees right
 ```
@@ -307,7 +358,8 @@ Turns the sprite to the left.
 stop.sprite.turn_left_degrees(
   degrees
 )
-
+```
+```python
 # EXAMPLE
 sprite.turn_left_degrees(90) # turns sprite 90 degrees left
 ```
@@ -324,7 +376,8 @@ Moves the sprite to a given location.
 stop.sprite.go_to(
   option
 )
-
+```
+```python
 # EXAMPLE
 sprite.go_to("random_position") # moves sprite to random position
 sprite.go_to("mouse_pointer") # moves sprite to mouse pointer
@@ -347,7 +400,8 @@ stop.sprite.go_to_x_y(
   x,
   y
 )
-
+```
+```python
 # EXAMPLE
 sprite.go_to_x_y(100, -200) # moves the sprite to (100, -200)
 ```
@@ -366,7 +420,8 @@ stop.sprite.glide_secs_to(
   option,
   seconds
 )
-
+```
+```python
 # EXAMPLE
 sprite.glide_secs_to("random_position", 2) # glides sprite to random position over 2 seconds
 sprite.glide_secs_to("mouse_pointer", 3) # glides sprite to mouse pointer over 3 seconds
@@ -392,7 +447,8 @@ stop.sprite.glide_secs_x_y(
   y,
   seconds
 )
-
+```
+```python
 # EXAMPLE
 sprite.glide_secs_to(40, -100, 2) # glides sprite to (40, -100) over 2 seconds
 ```
@@ -411,7 +467,8 @@ Turns the sprite to a given direction, in degrees.
 stop.sprite.point_in_direction(
   degrees
 )
-
+```
+```python
 # EXAMPLE
 sprite.point_in_direction(135) # points the sprite to direction 135 degrees
 ```
@@ -428,7 +485,8 @@ Points the sprite towards a given object, either the mouse or another sprite.
 stop.sprite.point_towards(
   option
 )
-
+```
+```python
 # EXAMPLE
 sprite.point_towards("mouse_pointer") # points the sprite towards the mouse pointer
 sprite.point_towards(sprite2,) # points the sprite towards 'sprite2'
@@ -448,7 +506,8 @@ Changes the sprite's x-coordinate by a given amount.
 stop.sprite.change_x_by(
   x
 )
-
+```
+```python
 # EXAMPLE
 sprite.change_x_by(-50) # moves the sprite left 50 pixels
 ```
@@ -465,7 +524,8 @@ Sets the sprite's x-coordinate to a given value.
 stop.sprite.set_x_to(
   x
 )
-
+```
+```python
 # EXAMPLE
 sprite.set_x_to(200) # moves the sprite to x-coordinate 200
 ```
@@ -482,7 +542,8 @@ Changes the sprite's y-coordinate by a given amount.
 stop.sprite.change_y_by(
   x
 )
-
+```
+```python
 # EXAMPLE
 sprite.change_y_by(-60) # moves the sprite down 60 pixels
 ```
@@ -499,7 +560,8 @@ Sets the sprite's y-coordinate to a given value.
 stop.sprite.set_y_to(
   y
 )
-
+```
+```python
 # EXAMPLE
 sprite.set_y_to(100) # moves the sprite to y-coordinate 100
 ```
@@ -514,7 +576,8 @@ If the sprite is touching the edge of the window on the current frame, its direc
 
 ```python
 stop.sprite.if_on_edge_bounce()
-
+```
+```python
 # EXAMPLE
 sprite.if_on_edge_bounce() # if the sprite is touching the edge of the screen it will point away from the edge
 ```
@@ -529,7 +592,8 @@ Changes how the sprite visually looks when its direction is changed.
 stop.sprite.set_rotation_style(
   option
 )
-
+```
+```python
 # EXAMPLE
 sprite.set_rotation_style("all_around") # sets the sprite to rotate all around
 sprite.set_rotation_style("dont_rotate") # sets the sprite to not rotate
@@ -552,7 +616,8 @@ stop.sprite.say_for_seconds(
   speech,
   seconds
 )
-
+```
+```python
 # EXAMPLE
 sprite.say_for_seconds("hello world", 2) # a speech bubble says 'hello world' for 2 seconds
 ```
@@ -571,7 +636,8 @@ stop.sprite.say(
   speech,
   seconds
 )
-
+```
+```python
 # EXAMPLE
 sprite.say("hello world") # a speech bubble says 'hello world'
 ```
@@ -589,7 +655,8 @@ stop.sprite.think_for_seconds(
   thought,
   seconds
 )
-
+```
+```python
 # EXAMPLE
 sprite.think_for_seconds("hello world", 2) # a thought bubble says 'hello world' for 2 seconds
 ```
@@ -607,7 +674,8 @@ Creates a thought bubble next to the sprite with some text.
 stop.sprite.think(
   thought
 )
-
+```
+```python
 # EXAMPLE
 sprite.think("hello world") # a thought bubble says 'hello world'
 ```
@@ -624,7 +692,8 @@ Changes the image used to represent the sprite, to a given one.
 stop.sprite.switch_costume_to(
   costume
 )
-
+```
+```python
 # EXAMPLE
 sprite.switch_costume_to("apple1") # tries to switch to costume with name 'apple1'
 sprite.switch_costume_to(4) # tries to switch costume to costume at index 4
@@ -642,7 +711,8 @@ Changes the sprite's current costume to the next index.
 
 ```python
 stop.sprite.next_costume()
-
+```
+```python
 # EXAMPLE
 sprite.next_costume() # switches to the next costume
 ```
@@ -657,7 +727,8 @@ Changes the sprite's size percentage. This is what percent of the sprite's origi
 stop.sprite.change_size_by(
   percentage
 )
-
+```
+```python
 # EXAMPLE
 sprite.change_size_by(-20) # decreases the sprite's size by 20%
 ```
@@ -674,7 +745,8 @@ Sets the sprite's size percentage to a given value. This is what percent of the 
 stop.sprite.set_size_to(
   percentage
 )
-
+```
+```python
 # EXAMPLE
 sprite.set_size_to(50) # sets the sprite's size to 50%
 ```
@@ -689,7 +761,8 @@ Makes the sprite visible (if previously invisible).
 
 ```python
 stop.sprite.show()
-
+```
+```python
 # EXAMPLE
 sprite.show() # makes the sprite visible
 ```
@@ -702,7 +775,8 @@ Makes the sprite invisible (if previously visible).
 
 ```python
 stop.sprite.hide()
-
+```
+```python
 # EXAMPLE
 sprite.hide() # makes the sprite invisible
 ```
@@ -710,31 +784,26 @@ sprite.hide() # makes the sprite invisible
 <br>
 
 ## Math Methods
-### :
-```python
-project = stop.Project(
-  fps=60
-)
-```
-Optional:
-`fps` - Changes project's frame rate if specified.
-
 ### Methods
 
-#### stop.project.wait
+#### stop.math.wait
 
-Pauses the current script for a given amount of time.
+Adds 2 numbers together. Has invalid data-type handling.
 
 ```python
-stop.project.wait(
-  seconds=False
+stop.math.add(
+  val1,
+  val2
 )
-
-# EXAMPLE
-project.wait() # waits one frame
-project.wait(1) # waits one second
 ```
-Optional:
-`seconds` - If 'false' it will wait one frame, otherwise it will wait the time specified in seconds.
+```python
+# EXAMPLE
+stop.math.add(4, -10) # adds 4 and -10
+stop.math.add("-0.5", 5) # adds -0.5 and 5
+stop.math.add("hello", "15") # converts 'hello' to 0, so adds 0 and 15
+```
+Required:
+`val1` - Any number, can be string
+`val2` - Any number, can be string
 
 <br>
