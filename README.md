@@ -790,7 +790,7 @@ sprite.hide() # makes the sprite invisible
 ## Math Methods
 ### Methods
 
-#### stop.math.wait
+#### stop.math.add
 
 Adds 2 numbers together. Has invalid data-type handling.
 
@@ -809,5 +809,530 @@ stop.math.add("hello", "15") # converts 'hello' to 0, so adds 0 and 15
 Required:
 `val1` - Any number, can be string
 `val2` - Any number, can be string
+
+<br>
+
+#### stop.math.sub
+
+Subtracts 2 numbers. Has invalid data-type handling.
+
+```python
+stop.math.sub(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.sub(4, -10) # subtracts -10 from 4
+stop.math.sub("-0.5", 5) # subtracts 5 from -0.5
+stop.math.sub("hello", "15") # converts 'hello' to 0, so subtracts 15 from 0
+```
+Required:
+`val1` - Any number, can be string
+`val2` - Any number, can be string
+
+<br>
+
+#### stop.math.mul
+
+Multiplies 2 numbers together. Has invalid data-type handling.
+
+```python
+stop.math.mul(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.mul(4, -10) # multiplies 4 and -10
+stop.math.mul("-0.5", 5) # multiplies 5 and -0.5
+stop.math.mul("hello", "15") # converts 'hello' to 0, so multiplies 15 and 0
+```
+Required:
+`val1` - Any number, can be string
+`val2` - Any number, can be string
+
+<br>
+
+#### stop.math.div
+
+Divides 2 numbers. Has invalid data-type handling.
+
+```python
+stop.math.div(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.div(4, -10) # divides 4 by -10
+stop.math.div("-0.5", 5) # divides -0.5 by 5
+stop.math.div("hello", "15") # converts 'hello' to 0, so divides 0 by 15
+```
+Required:
+`val1` - Any number, can be string
+`val2` - Any number, can be string
+
+<br>
+
+#### stop.math.mod
+
+Performs modulo on 2 numbers. Has invalid data-type handling.
+
+```python
+stop.math.mod(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.mod(4, -10) # performs 4 % -10
+stop.math.mod("-0.5", 5) # performs -0.5 % 5
+stop.math.mod("hello", "15") # converts 'hello' to 0, so performs 0 % 15
+```
+Required:
+`val1` - Any number, can be string
+`val2` - Any number, can be string
+
+<br>
+
+#### stop.math.gt
+
+Does the greater than comparison on 2 numbers. Has invalid data-type handling.
+
+```python
+stop.math.gt(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.gt(4, -10) # is 4 > -10
+stop.math.gt("-0.5", 5) # is -0.5 > 5
+stop.math.gt("hello", "15") # converts 'hello' to 0, so is 0 > 15
+```
+Required:
+`val1` - Any number, can be string
+`val2` - Any number, can be string
+
+<br>
+
+#### stop.math.lt
+
+Does the less than comparison on 2 numbers. Has invalid data-type handling.
+
+```python
+stop.math.lt(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.lt(4, -10) # is 4 < -10
+stop.math.lt("-0.5", 5) # is -0.5 < 5
+stop.math.lt("hello", "15") # converts 'hello' to 0, so is 0 < 15
+```
+Required:
+`val1` - Any number, can be string
+`val2` - Any number, can be string
+
+<br>
+
+#### stop.math.eq
+
+Checks if 2 numbers are equal. Has invalid data-type handling.
+
+```python
+stop.math.eq(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.eq(4, -10) # is 4 = -10
+stop.math.eq("-0.5", 5) # is -0.5 = 5
+stop.math.eq("hello", "15") # converts 'hello' to 0, so is 0 = 15
+```
+Required:
+`val1` - Any number, can be string
+`val2` - Any number, can be string
+
+<br>
+
+#### stop.math.join
+
+Joins 2 numbers or strings.
+
+```python
+stop.math.join(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.join(4, -10) # results in '4-10'
+stop.math.join("-0.5", 5) # results in '-0.55'
+stop.math.join("hello", "15") # results in 'hello15'
+```
+Required:
+`val1` - Any data type
+`val2` - Any data type
+
+<br>
+
+#### stop.math.letter
+
+Finds the index of a string.
+
+```python
+stop.math.letter(
+  string,
+  index
+)
+```
+```python
+# EXAMPLE
+stop.math.letter(2, 'hello') # results in 'e'
+stop.math.letter(-3, 'hello') # results in ''
+stop.math.letter("5", "hello") # results in 'o'
+```
+Required:
+`string` - A string
+`index` - Any number, can be string
+
+<br>
+
+#### stop.math.contains
+
+If a string contains another string.
+
+```python
+stop.math.contains(
+  val1,
+  val2
+)
+```
+```python
+# EXAMPLE
+stop.math.contains('hello', 'h') # results in True
+stop.math.contains(100, 10) # results in True
+stop.math.contains('77', 3) # results in False
+```
+Required:
+`val1` - Any data type
+`val2` - Any data type
+
+<br>
+
+#### stop.math.len
+
+Finds the length of a value.
+
+```python
+stop.math.contains(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.contains('hello') # results in 5
+stop.math.contains(100) # results in 3
+stop.math.contains(False) # results in 5
+```
+Required:
+`val` - Any data type
+
+<br>
+
+#### stop.math.round
+
+Rounds a value to the nearest unit.
+
+```python
+stop.math.round(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.round('0.1') # results in 0
+stop.math.round(5.5) # results in 6
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.abs
+
+Returns the absolute value of a value (always makes it positive).
+
+```python
+stop.math.abs(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.abs('-5') # results in 5
+stop.math.abs(7) # results in 7
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.floor
+
+Returns the floor of a value (rounds down to the nearest unit).
+
+```python
+stop.math.floor(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.floor('0.5') # results in 0
+stop.math.floor(7.9) # results in 7
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.ceil
+
+Returns the ceiling of a value (rounds up to the nearest unit).
+
+```python
+stop.math.floor(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.floor('0.5') # results in 1
+stop.math.floor(7.9) # results in 8
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.sqrt
+
+Returns the square root of a value.
+
+```python
+stop.math.sqrt(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.sqrt('0.25') # results in 0.5
+stop.math.sqrt(9) # results in 3
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.sin
+
+Returns the sin of a value.
+
+```python
+stop.math.sin(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.sin('90') # results in 1
+stop.math.sin(0) # results in 0
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.cos
+
+Returns the cos of a value.
+
+```python
+stop.math.cos(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.cos('0') # results in 1
+stop.math.cos(90) # results in 0
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.tan
+
+Returns the tan of a value.
+
+```python
+stop.math.tan(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.tan('45') # results in 1
+stop.math.tan(135) # results in -1
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.asin
+
+Returns the asin of a value.
+
+```python
+stop.math.asin(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.asin('1') # results in 90
+stop.math.asin(0) # results in 0
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.acos
+
+Returns the acos of a value.
+
+```python
+stop.math.acos(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.acos('-1') # results in 180
+stop.math.acos(0) # results in 90
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.atan
+
+Returns the atan of a value.
+
+```python
+stop.math.atan(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.atan('-1') # results in -45
+stop.math.atan(0) # results in 0
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.nl
+
+Returns the natural logarithm of a value.
+
+```python
+stop.math.nl(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.nl('5') # results in 1.6094379124341003
+stop.math.nl(1) # results in 0
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.log
+
+Returns the base-10 logarithm of a value.
+
+```python
+stop.math.log(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.log('100') # results in 2
+stop.math.log(1) # results in 0
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.e2x
+
+Returns the e to the power of a value (e^x).
+
+```python
+stop.math.e2x(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.e2x('2') # results in 7.38905609893065
+stop.math.e2x(0) # results in 1
+```
+Required:
+`val` - Any number, can be string
+
+<br>
+
+#### stop.math.ten2x
+
+Returns the 10 to the power of a value (10^x).
+
+```python
+stop.math.ten2x(
+  val
+)
+```
+```python
+# EXAMPLE
+stop.math.ten2x('2') # results in 100
+stop.math.ten2x(-2) # results in 0.01
+```
+Required:
+`val` - Any number, can be string
 
 <br>

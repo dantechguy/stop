@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="stop",
-    version="0.0.8",
+    version="0.0.9",
     author="Daniel Wendon-Blixrud",
     author_email="d@nielwb.com",
     description="Scratch in Python, and conversion",
