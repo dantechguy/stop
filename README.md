@@ -11,10 +11,25 @@ A text based programming language
 *Who is this library for?*
 Those who know Scratch, and are looking to move on to Python
 
-## Getting Started
-Install via PIP from [PyPI](https://pypi.org/project/stop):
+## Installation
+### Install via PIP from [PyPI](https://pypi.org/project/stop):
 
-`python3 -m pip install stop` or `py -m pip install stop` or `python -m pip install stop` or `pip install stop`
+`python3 -m pip install stop` or
+
+`py -m pip install stop` or
+
+`python -m pip install stop` or
+
+`pip install stop`
+
+### Use manually
+Download the folder `stop` which is inside `package` from the files above, and place it in the same directory as your code. Then import it with:
+
+```python
+import stop
+```
+
+## Getting Started
 
 Create a new project (and window), and a sprite:
 
