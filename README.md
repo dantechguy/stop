@@ -1,6 +1,14 @@
 
 # S.To.P (Scratch To Python)
 
+## Contents:
+
+- [Intro](#intro)
+- [Installation](#installation)
+- [Getting Started](#gettingstarted)
+- [Documentation](#documentation)
+- [To Do](#todo)
+
 ## Intro
 *What is [Scratch](https://scratch.mit.edu)?*
 A drag and drop, block based programming language aimed at children
@@ -350,7 +358,7 @@ project.run() # begins the project
 ## Sprite Class
 ### Create Sprite Object:
 ```python
-sprite= stop.Sprite(
+sprite = stop.Sprite(
   project
 )
 ```
@@ -1376,3 +1384,22 @@ stop.math.ten2x(-2) # results in 0.01
 ```
 Required:
 `val` - Any number, can be string
+
+<br>
+
+## To Do
+- Finish conversion
+- Finish sprites
+  - Attributes
+    - X
+    - Y
+    - Costume name
+    - Costume number
+    - Size
+  - Methods
+    - Distance to
+    - Sound
+- Finish project
+  - Backdrops
+  - Pen
+- Allow for conversion of urls

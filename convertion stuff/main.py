@@ -1,27 +1,45 @@
-import json, tkinter as tk, os
-import file_setup, msplit # ,json_to_python
+import extract_files
 
-# get sb3 file
-target_sb3_file_dir = file_setup.open_file("Open", [("Scratch Files", "*.sb3")])
-if target_sb3_file_dir == "":
-    exit()
+def main(sb3Url):
+  extract_files.extractFilesAndCreateTempFolder(sb3Url)
 
-# initialising variables
-project_name = msplit.msplit(target_sb3_file_dir, ["\\", "/"]).replace(".sb3", "")
-project_data_dir = "project_data"
-assets_file_dir = "assets/"
+  customCode = ''
 
-# file setup
-file_setup.remove_assets_folder(assets_file_dir)
-file_setup.unzip_sb3_file_to_assets(target_sb3_file_dir, assets_file_dir)
+  finalCode = '''import stop
 
-# extracting json data
-json_data = file_setup.read_json(assets_file_dir + "project.json")
-targets = json_data["targets"]
+project = stop.Project()
 
-# convert json sb3 to python
-sprites = []
-for i in targets:
-    print(i)
-    # name = sprite[""]
-    # json_to_python.sprite()
+{0}
+
+project.run()'''.format(customCode)
+
+
+if __name__ == '__main__':
+  sb3Url = 'C:/Users/danie/Documents/code/python/scratch2python/convertion stuff/assets.sb3'
+  main(sb3Url)
+
+
+
+
+# each sprite code segment must consist of something like this:
+
+
+
+# first load costumes
+
+# costumes = [
+#   {'file': '', 'name': ''},
+#   {'file': '', 'name': ''},
+#   {'file': '', 'name': ''}
+# ]
+
+# # next initiate sprite
+
+# sprite_sprite1 = stop.Sprite(project, costumes=costumes)
+
+# # finally create scripts
+
+# def sprite1_greenflag1():
+#   sprite_sprite1.move_steps(10)
+
+# project.green_flag(sprite1_greenflag1)
