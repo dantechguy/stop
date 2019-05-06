@@ -5,9 +5,9 @@
 
 - [Intro](#intro)
 - [Installation](#installation)
-- [Getting Started](#gettingstarted)
+- [Getting Started](#getting-started)
 - [Documentation](#documentation)
-- [To Do](#todo)
+- [To Do](#to-do)
 
 ## Intro
 *What is [Scratch](https://scratch.mit.edu)?*
