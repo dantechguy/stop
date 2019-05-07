@@ -1388,18 +1388,75 @@ Required:
 <br>
 
 ## To Do
-- Finish conversion
-- Finish sprites
-  - Attributes
-    - X
-    - Y
-    - Costume name
-    - Costume number
-    - Size
-  - Methods
-    - Distance to
-    - Sound
-- Finish project
-  - Backdrops
-  - Pen
+- Finish first version of conversion
+- Blocks still to implement:
+  - motion
+    - if edge bounce
+    - x position
+    - y position
+    - direction
+  - looks
+    - say for seconds
+    - say
+    - think for seconds
+    - think
+    - switch backdrop to
+    - next backdrop
+    - change effect by
+    - set effect to
+    - clear effects
+    - go to layer
+    - go forward/backward layers
+    - costume number/name
+    - backdrop number/name
+    - size
+  - sound
+    - play sound until done
+    - play sound
+    - stop all sounds
+    - change pitch by
+    - set pitch to
+    - clear effects
+    - change volume by
+    - set volume to
+    - volume
+  - events
+    - when key pressed
+    - when sprite clicked
+    - when backdrop switches to
+    - when loudness
+    - when i receieve
+    - broadcast
+    - broadcast and wait
+  - control
+    - stop
+    - when i start as a clone
+    - create clone
+    - delete clone
+  - sensing
+    - touching
+    - touching colo(u)r
+    - colo(u)r is touching colo(u)r
+    - distance to
+    - ask and wait
+    - answer
+    - key pressed
+    - mouse down
+    - mouse x
+    - mouse y
+    - set drag mode
+    - loudness
+    - timer
+    - reset timer
+    - __ of sprite
+    - current day/time/year
+    - days since 2000
+    - username
+  - variables
+    - show variable
+    - hide variable
+    - show list
+    - hide list
+  - my blocks
+    - custom blocks
 - Allow for conversion of urls
