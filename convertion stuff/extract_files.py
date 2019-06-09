@@ -2,9 +2,8 @@
 import os
 import zipfile
 
-def extractFilesAndCreateTempFolder(sb3Url):
+def extractFilesAndCreateTempFolder(sb3Url, tempFolderName):
 
-  tempFolderName = '.temp'
   tempFolderUrl = '{0}/{1}'.format(os.path.dirname(sb3Url), tempFolderName)
 
   if os.path.exists(tempFolderUrl):

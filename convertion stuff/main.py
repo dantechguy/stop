@@ -1,7 +1,8 @@
 import extract_files
 
 def main(sb3Url):
-  extract_files.extractFilesAndCreateTempFolder(sb3Url)
+  tempFolderName = '.temp'
+  extract_files.extractFilesAndCreateTempFolder(sb3Url, tempFolderName)
 
   customCode = ''
 

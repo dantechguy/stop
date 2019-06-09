@@ -22,6 +22,8 @@ Those who know Scratch, and are looking to move on to Python
 ## Installation
 ### Install via PIP from [PyPI](https://pypi.org/project/stop):
 
+`C:/your/link/to/python.exe -m pip install stop` or
+
 `python3 -m pip install stop` or
 
 `py -m pip install stop` or
