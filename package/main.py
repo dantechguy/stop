@@ -1,17 +1,14 @@
 import stop
-import time
 
 project = stop.Project()
 
-sprite = stop.Sprite(project)
-sprite.set_size_to(25)
+class Sprite1(stop.Sprite):
+    def walk_and_turn(self):
+        self.turn_right_degrees(100)
+        self.move_steps(100)
 
-def move_and_turn():
-    while True:
-        sprite.move_steps(10)
-        sprite.turn_right_degrees(10)
-        sprite.next_costume()
+sprite1 = Sprite1(project)
 
-project.green_flag(move_and_turn)
+project.green_flag(sprite1.walk_and_turn)
 
 project.run()

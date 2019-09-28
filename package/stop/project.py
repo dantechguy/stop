@@ -28,6 +28,9 @@ class Project:
         self.send_green_flag_event()
         self.canvas_object.root.mainloop()
 
+    def stop(self):
+        self.canvas_object.root.destroy()
+
     def frame(self):
         for _ in range(self.queue.qsize()):
             item = self.queue.get()
@@ -54,6 +57,10 @@ class Project:
 
     def stop_all_sounds(self, parameters):
         pass
+
+    def create_clone_of(self, parameters): #sprite
+        pass
+
 
 
     # ADD EVENTS

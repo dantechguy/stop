@@ -1,16 +1,40 @@
-- check and fix project.wait
-- when costume converting svg to png, make sure scale correctly
+- converting code
+  - should make child of sprite class
+  - new method per script
+  - new file per sprite
+  - backdrop file
+  - main.py contains project object
+
+- convert svg>png, scale properly
+
 - build backdrop / project costume support
+
+- different code generation modes:
+  - one contained file
+  - spread across multiple files
+
+- create clone system
+  - one clone function per sprite
+  - first arguement in function is self reference
+
+- after sprite init, create attributes:
+  - sprite.v_happiness = 0
+  - sprite.v_score = 10
+
+- in each sprite creation
+  - each function has same name
+  - clone functions has same name
+
+- global variables:
+  - stored in project as attributes with 'v_' prefix
+  - at start of script generation, create list of globals
 
 
 2.0 json
 https://projects.scratch.mit.edu/<id>
 
 3.0 assets
-http://cdn.assets.scratch.mit.edu/internalapi/asset/<md5>/get/
-
-3.0 assets
-https://scratch.mit.edu/static/assets/<md5>.svg
+https://cdn.assets.scratch.mit.edu/internalapi/asset/<md5>/get/
 
 3.0 scripts:
-https://projects.scratch.mit.edu/<id>
+https://cdn.projects.scratch.mit.edu/<id>
