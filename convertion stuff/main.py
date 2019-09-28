@@ -1,23 +1,24 @@
 import extract_files
+from prefs import prefs
 
-def main(sb3Url):
-  tempFolderName = '.temp'
-  extract_files.extractFilesAndCreateTempFolder(sb3Url, tempFolderName)
+def main(sb3_url):
+  temp_folder_name = prefs.temp_folder_name
+  extract_files.extract_files_and_create_temp_folder(sb3_url, temp_folder_name)
 
-  customCode = ''
+  custom_code = ''
 
-  finalCode = '''import stop
+  final_code = '''import stop
 
-project = stop.Project()
+{0} = stop.Project()
 
-{0}
+{1}
 
-project.run()'''.format(customCode)
+{0}.run()'''.format(prefs.project_variable_name, custom_code)
 
 
 if __name__ == '__main__':
-  sb3Url = 'C:/Users/danie/Documents/code/python/scratch2python/convertion stuff/assets.sb3'
-  main(sb3Url)
+  sb3_url = 'C:/Users/danie/Documents/code/python/scratch2python/convertion stuff/assets.sb3'
+  main(sb3_url)
 
 
 

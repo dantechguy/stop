@@ -47,6 +47,7 @@ Create a new project (and window), and a sprite:
  import stop
  project = stop.Project()
  sprite = stop.Sprite(project)
+ project.run()
  ```
  
 ## Documentation

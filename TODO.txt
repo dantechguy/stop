@@ -1,21 +1,16 @@
 - check and fix project.wait
-- fix sprite costumes and project background
-- add all motion_goto_menu options in roundBlockGenerator
-- add all solid blocks in solidBlockGenerator
-- add all roundBlock checks in solidBlockGenerator
-- add sprite. :
-x
-y
-direction
-costume_name
-costume_number
-backdrop_name
-backdrop_number
-size
-distance_to
+- when costume converting svg to png, make sure scale correctly
+- build backdrop / project costume support
 
-conversion
-- all for nested blocks (so confusing?? recursion!)
 
-2.0 json: https://projects.scratch.mit.edu/<id>
-3.0 assets: http://cdn.assets.scratch.mit.edu/internalapi/asset/<md5>/get/
+2.0 json
+https://projects.scratch.mit.edu/<id>
+
+3.0 assets
+http://cdn.assets.scratch.mit.edu/internalapi/asset/<md5>/get/
+
+3.0 assets
+https://scratch.mit.edu/static/assets/<md5>.svg
+
+3.0 scripts:
+https://projects.scratch.mit.edu/<id>
