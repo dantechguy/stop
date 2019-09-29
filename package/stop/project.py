@@ -6,13 +6,15 @@ import time
 
 
 class Project:
-    def __init__(self, fps=60):
-        self.sprites = {}
-        self.canvas_object = canvas_object.CanvasObject()
+    def __init__(self, fps=30):
+        self.canvas_object = canvas_object.CanvasObject(self)
         self.queue = queue.Queue()
         self.fps = fps
         self.frame_time_ms = int(1000/fps)
         self.frame_time = 1/fps
+        # public variables
+        self.mouse_x = 0
+        self.mouse_y = 0
 
         # event lists
         self.green_flag_events = {'all':[]}
@@ -36,7 +38,7 @@ class Project:
             item = self.queue.get()
             item_function = item['function']
             item_parameters = item['parameters']
-            item_function(item_parameters)
+            item_function(*item_parameters)
             self.queue.task_done()
 
         self.canvas_object.root.after(self.frame_time_ms, self.frame)

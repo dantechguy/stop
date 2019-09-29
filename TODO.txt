@@ -1,33 +1,46 @@
-- converting code
-  - should make child of sprite class
-  - new method per script
-  - new file per sprite
-  - backdrop file
-  - main.py contains project object
+converting code
+  should make child of sprite class
+  new method per script
+  new file per sprite
+  backdrop file
+  main.py contains project object
 
-- convert svg>png, scale properly
+make sprite_code methods unbreakable
 
-- build backdrop / project costume support
+cache costume edits:
+  flips
+  rotations
+  size
+  in prefs have 'cache size'
+    max caches per sprite
+    max caches overall
+    stored in memory
 
-- different code generation modes:
-  - one contained file
-  - spread across multiple files
+convert svg>png, scale properly
+  scratch site makes png's 2x as big
 
-- create clone system
-  - one clone function per sprite
-  - first arguement in function is self reference
+build backdrop / project costume support
 
-- after sprite init, create attributes:
-  - sprite.v_happiness = 0
-  - sprite.v_score = 10
+different code generation modes:
+  one contained file
+  spread across multiple files
 
-- in each sprite creation
-  - each function has same name
-  - clone functions has same name
+blocks to make:
+  clone
+  when i start as clone
+  stop this sprite
+  stop this script > 'return'
+  touching color
+  colour is touching colour
+  --  just finished 'distance' in list
 
-- global variables:
-  - stored in project as attributes with 'v_' prefix
-  - at start of script generation, create list of globals
+create clone system
+  one clone function per sprite
+  first arguement in function is self reference
+
+global variables:
+  stored in project/backdrop as attributes with 'v_' prefix
+  at start of script generation, create list of globals
 
 
 2.0 json

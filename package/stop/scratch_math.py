@@ -1,5 +1,7 @@
 import math
 
+abso = abs
+
 def typ(val):
     if val in (True, False, 'true', 'false'):
         return 'bool'
@@ -24,10 +26,11 @@ def c2t(val): # convert to type
 
 
 def s20(val): # string to 0
+    converted_val = c2t(val)
     if typ(val) == 'str':
         return 0
     else:
-        return c2t(val)
+        return val
 
 # def typ(value):
 #     return(type(value).__name__)
@@ -147,7 +150,7 @@ def round(val):
     return result
 
 def abs(val):
-    result = abs(s20(val))
+    result = abso(s20(val))
     return result
 
 def floor(val):
@@ -175,15 +178,15 @@ def tan(val):
     return result
 
 def asin(val):
-    result = math.asin(math.radians(s20(val)))
+    result = math.degrees(math.asin(s20(val)))
     return result
 
 def acos(val):
-    result = math.acos(math.radians(s20(val)))
+    result = math.degrees(math.acos(s20(val)))
     return result
 
 def atan(val):
-    result = math.atan(math.radians(s20(val)))
+    result = math.degrees(math.atan(s20(val)))
     return result
 
 def nl(val):

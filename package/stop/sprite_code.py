@@ -6,165 +6,165 @@ import os
 
 class SpriteCode:
     def __init__(self, parameters):
-        self.parameters = parameters
         # private
-        self.project =          parameters['project']
-        self.canvas =           parameters['canvas']
-        self.sprite_container = parameters['sprite_container']
-        self.layer_order =      parameters['layer_order']       # number
-        self.visible =          parameters['visible']           # true / false
-        self.draggable =        parameters['draggable']         # True / False
-        self.rotation_style =   parameters['rotation_style']    # Left-Right / Dont Rotate / All Around
-        self.costumes =         parameters['costumes']          # dict of name and image dir
-        # public
-        self.x =                parameters['x']
-        self.y =                parameters['y']                                 
-        self.direction =        parameters['direction']         # angle -179 to 180
-        self.size =             parameters['size']              # percentage 0 to 100
-        self.costume_number =   parameters['costume_number']    # index starts 0
-        self.volume =           parameters['volume']            # percentage 0 to 100
+        self._project =          parameters['project']
+        self._canvas =           self._project.canvas_object
+        self._sprite_parent =    parameters['sprite_parent']
+        self._touching_mouse =   False
+        # private builtin
+        self._layer_order =      parameters['layer_order']       # number
+        self._visible =          parameters['visible']           # true / false
+        self._draggable =        parameters['draggable']         # True / False
+        self._rotation_style =   parameters['rotation_style']    # Left-Right / Dont Rotate / All Around
+        self._costumes =         parameters['costumes']          # dict of name and image dir
+        # builtin with public getters
+        self._x =                parameters['x']
+        self._y =                parameters['y']                                 
+        self._direction =        parameters['direction']         # angle -179 to 180
+        self._size =             parameters['size']              # percentage 0 to 100
+        self._costume_number =   parameters['costume_number']    # index starts 0
+        self._volume =           parameters['volume']            # percentage 0 to 100
         # NOT BUILT INS
         # creating canvas image
-        self.canvas_img = self.canvas.canvas.create_image((0, 0))
-        self.pil_img = None
-        self.pil_img_edited = None
-        self.tk_img = None
+        self._canvas_img = self._canvas.canvas.create_image((0, 0))
+        self._pil_img = None
+        self._pil_img_edited = None
+        self._tk_img = None
         
         self.update_position()
         self.update_sprite()
+        self.set_bindings()
 
     # motion
-    def move_steps(self, parameters):  # steps
-        steps = parameters[0]
+    def move_steps(self, steps):
         x = 0
         y = 0
-        if self.direction == 0:
+        if self._direction == 0:
             y = steps
-        elif self.direction == 90:
+        elif self._direction == 90:
             x = steps
-        elif self.direction == 180:
+        elif self._direction == 180:
             y = 0 - steps
-        elif self.direction == -90:
+        elif self._direction == -90:
             x = 0 - steps
         else:
-            x = steps*v.sin(self.direction)
-            y = steps*v.cos(self.direction)
-        self.x += x
-        self.y += y
+            x = steps*v.sin(self._direction)
+            y = steps*v.cos(self._direction)
+        self._x += x
+        self._y += y
         self.update_position()
 
-    def turn_right_degrees(self, parameters):  # degrees
-        degrees = parameters[0]
-        self.direction += degrees
-        self.update_sprite()
+    def turn_right_degrees(self, degrees):
+        new_direction = self._direction + degrees
+        self.point_in_direction(new_direction)
 
-    def turn_left_degrees(self, parameters):  # degrees
-        degrees = parameters[0]
-        self.direction -= degrees
-        self.update_sprite()
+    def turn_left_degrees(self, degrees):
+        new_direction = self._direction - degrees
+        self.point_in_direction(new_direction)
 
-    def go_to(self, parameters):  # option
-        option = parameters[0]
+    def go_to(self, option):
         if option == "random_position":
             x = random.randint(-240, 240)
             y = random.randint(-180, 180)
         elif option == "mouse_pointer":
             # use system to find mouse coordinates
-            x = None
-            y = None
+            x = self._project.mouse_x
+            y = self._project.mouse_y
         else:
             # use system to find other sprite coordinates
-            sprite = self.main.sprites[option]
-            x = sprite.x
-            y = sprite.y
-        self.x = x
-        self.y = y
+            x = option.x()
+            y = option.y()
+        self._x = x
+        self._y = y
         self.update_position()
 
-    def go_to_x_y(self, parameters):  # x, y
-        self.x = parameters[0]
-        self.y = parameters[1]
+    def go_to_x_y(self, x, y):
+        self._x = x
+        self._y = y
         self.update_position()
 
-    def glide_secs_to(self, parameters):  # option, seconds
-        option = parameters[0]
-        seconds = parameters[1]
+    def glide_secs_to(self, option, seconds):
         if option == "random_position":
             x = random.randint(-240, 240)
             y = random.randint(-180, 180)
         elif option == "mouse_pointer":
             # use system to find mouse coordinates
-            x = None
-            y = None
+            x = self._project.mouse_x
+            y = self._project.mouse_y
         else:
             # use system to find other sprite coordinates
-            x = None
-            y = None
-        self.x = x
-        self.y = y
+            x = option.x()
+            y = option.y()
+        self._x = x
+        self._y = y
 
-    def glide_secs_to_x_y(self, parameters):  # x, y
+    def glide_secs_to_x_y(self, x, y, seconds):
         # work - do replace 'glide' with a 'for loop + goto'
-        self.x = parameters[0]
-        self.y = parameters[1]
+        self._x = x
+        self._y = y
 
-    def point_in_direction(self, parameters):  # direction
-        self.direction = parameters[0]
+    def point_in_direction(self, direction):
+        self._direction = ( ( direction + 179 ) % 360 ) - 179
         self.update_sprite()
 
-    def point_towards(self, parameters):  # option
-        option = parameters[0]
+    def point_towards(self, option):
         if option == "mouse_pointer":
             # use system to find mouse coordinates
-            target_x = None
-            target_y = None
+            target_x = self._project.mouse_x
+            target_y = self._project.mouse_y
         else:
             # use system to find other sprite coordinates
-            target_x = None
-            target_y = None
-        x = target_x - self.x
-        y = target_y - self.y
-        angle = (y / x).atan()
-        self.direction = angle
+            target_x = option.x()
+            target_y = option.y()
+        x = target_x - self._x
+        y = target_y - self._y
+        if x == 0 or y == 0:
+            angle = 90
+        else:
+            # unit_y = y / v.abs(y)
+            # half_unit_y = unit_y / 2
+            # binary_y = half_unit_y - 0.5
+            # binary_180 = binary_y*180
+            binary_180 = (180*y)/(2*abs(y))-90 # algebra simplfied
+            angle = v.atan(x / y) + binary_180
+        self.point_in_direction(angle)
 
-    def change_x_by(self, parameters):  # x
-        self.x += parameters[0]
+    def change_x_by(self, x):
+        self._x += x
         self.update_position()
 
-    def set_x_to(self, parameters):  # x
-        self.x = parameters[0]
+    def set_x_to(self, x):
+        self._x = x
         self.update_position()
 
-    def change_y_by(self, parameters):  # y
-        self.y += parameters[0]
+    def change_y_by(self, y):
+        self._y += y
         self.update_position()
 
-    def set_y_to(self, parameters):  # y
-        self.y = parameters[0]
+    def set_y_to(self, y):
+        self._y = y
         self.update_position()
 
-    def if_on_edge_bounce(self, parameters): # not straightforward
+    def if_on_edge_bounce(self): # not straightforward
         pass
 
-    def set_rotation_style(self, parameters):  # option
-        option = parameters[0]
-        self.rotation_style = option
+    def set_rotation_style(self, option): # all around/left-right/dont rotate
+        self._rotation_style = option
 
     # looks
-    def say_for_seconds(self, parameters): # use global function?
+    def say_for_seconds(self, message, seconds): # use global function?
         pass
 
-    def say(self, parameters):
+    def say(self, message):
         pass
 
-    def think_for_seconds(self, parameters):
+    def think_for_seconds(self, thought, seconds):
         pass
 
-    def think(self, parameters):
+    def think(self, thought):
         pass
 
-    def switch_costume_to(self, parameters):  # costume
-        costume = parameters[0]
+    def switch_costume_to(self, costume): # type function not correct
         if type(costume) == "int":
             self.switch_costume_to_num(costume)
         elif type(costume) == "str":
@@ -174,67 +174,65 @@ class SpriteCode:
                 self.switch_costume_to_num(int(float(costume)))
         self.update_sprite()
 
-    def next_costume(self, parameters):
-        self.costume_number += 1
-        if self.costume_number > len(self.costumes)-1:
-            self.costume_number = 0
+    def next_costume(self):
+        self._costume_number += 1
+        if self._costume_number > len(self._costumes)-1:
+            self._costume_number = 0
         self.update_sprite()
 
-    def change_size_by(self, parameters):  # percentage
-        percentage = parameters[0]
-        new_size = (self.size + percentage, )
+    def change_size_by(self, percentage):
+        new_size = (self._size + percentage, )
         self.set_size_to(new_size)
 
-    def set_size_to(self, parameters):  # percentage
-        percentage = parameters[0]
-        self.size = percentage
-        if self.size < 1:
-            self.size = 1
+    def set_size_to(self, percentage):
+        self._size = percentage
+        if self._size < 1:
+            self._size = 1
         self.update_sprite()
 
-    def change_look_effect_by(self, parameters): # effect name, value
+    def change_look_effect_by(self, effect, value):
         pass
 
-    def set_look_effect_to(self, parameters): #effect name, value
+    def set_look_effect_to(self, effect, value):
         pass
 
-    def clear_graphic_effects(self, parameters):
+    def clear_graphic_effects(self):
         pass
 
-    def show(self, parameters):
-        self.visible = True
+    def show(self):
+        self._visible = True
         self.update_sprite()
 
-    def hide(self, parameters):
-        self.visible = False
+    def hide(self):
+        self._visible = False
         self.update_sprite()
 
-    def go_to_layer(self, parameters): # front/back
+    def go_to_layer(self, option): # front/back
         pass
 
-    def go_layers(self, parameters): # forward/backward, number of layers
+    def go_layers(self, option, layers): # forward/backward, number of layers
         pass
 
     # sound
-    def play_sound_until_done(self, parameters): #sound name
+    def play_sound_until_done(self, sound):
         pass
 
-    def play_sound(self, parameters): # sound name
+    def play_sound(self, sound):
         pass
 
-    def change_sound_effect_by(self, parameters): # pitch/pan left-right, value
+    def change_sound_effect_by(self, option, value): # pitch/pan left-right, value
         pass
 
-    def set_sound_effect_to(self, parameters): # pitch/pan left-right, value
+    def set_sound_effect_to(self, option, value): # pitch/pan left-right, value
         pass
 
-    def clear_sound_effects(self, parameters):
+    def clear_sound_effects(self):
         pass
 
-    def change_volume_by(self, parameters): # percentage
+    def change_volume_by(self, percentage):
         pass
 
-    def set_volume_to(self, paramters): # percentage
+    def set_volume_to(self, percentage):
         pass
 
 
@@ -242,12 +240,25 @@ class SpriteCode:
 
     ### NOT BUILT INS ###
 
-    def bind_click(self):
-        self.canvas.canvas.tag_bind(self.canvas_img, '<Button-1>', self.sprite_clicked)
+    # bindings
 
-    def sprite_clicked(self):
-        self.project.send_sprite_clicked_event(self.sprite_container)
+    def set_bindings(self):
+        self._canvas.canvas.tag_bind(self._canvas_img, '<Button-1>', self.binding_clicked)
 
+        self._canvas.canvas.tag_bind(self._canvas_img, '<Enter>', self.binding_mouse_enter)
+
+        self._canvas.canvas.tag_bind(self._canvas_img, '<Leave>', self.binding_mouse_leave)
+
+    def binding_clicked(self, event):
+        self._project.send_sprite_clicked_event(self._sprite_parent)
+
+    def binding_mouse_enter(self, event):
+        self._touching_mouse = True
+
+    def binding_mouse_leave(self, event):
+        self._touching_mouse = False
+
+    # appearance updates
 
     def find_index_of_dictionary_in_list_with_key_that_has_value(self, list_of_dictionaries, key, value):
         for index, dictionary in enumerate(list_of_dictionaries):
@@ -256,52 +267,52 @@ class SpriteCode:
         raise ValueError
 
     def switch_costume_to_str(self, costume):
-        costume_dictionary_index = self.find_index_of_dictionary_in_list_with_key_that_has_value(self.costumes, "name", costume)
+        costume_dictionary_index = self.find_index_of_dictionary_in_list_with_key_that_has_value(self._costumes, "name", costume)
         index = costume_dictionary_index+1
-        self.costume_number = index
+        self._costume_number = index
 
     def switch_costume_to_num(self, costume):
-        if costume in range(len(self.costumes)):
-            self.costume_number = costume
+        if costume in range(len(self._costumes)):
+            self._costume_number = costume
         else:
-            self.costume_number = costume % len(self.costumes)
+            self._costume_number = costume % len(self._costumes)
 
     def update_position(self):
-        x = self.x + 240
-        y = 180 - self.y
-        self.canvas.canvas.coords(self.canvas_img, x, y)
+        x = self._x + 240
+        y = 180 - self._y
+        self._canvas.canvas.coords(self._canvas_img, x, y)
 
     def update_size(self):
-        multiplier = self.size * 0.01
-        current_width = self.pil_img.size[0]
-        current_height = self.pil_img.size[1]
+        multiplier = self._size * 0.005
+        current_width = self._pil_img.size[0]
+        current_height = self._pil_img.size[1]
         new_width = current_width*multiplier
         new_height = current_height*multiplier
         new_size = (int(float(new_width)), int(float(new_height)))
-        self.pil_img_edited = self.pil_img.resize(new_size)
+        self._pil_img_edited = self._pil_img.resize(new_size)
 
     def update_costume(self):
-        self.pil_img = Image.open(self.costumes[int(self.costume_number)-1]["file"])
+        self._pil_img = Image.open(self._costumes[int(self._costume_number)-1]["file"])
 
 
     def update_rotation(self):
-        if self.rotation_style == "all around":
-            self.pil_img_edited = self.pil_img_edited.rotate(int(0-self.direction)+90, expand=1, resample=Image.BICUBIC)
-        elif self.rotation_style == "dont rotate":
+        if self._rotation_style == "all around":
+            self._pil_img_edited = self._pil_img_edited.rotate(int(0-self._direction)+90, expand=1, resample=Image.BICUBIC)
+        elif self._rotation_style == "dont rotate":
             pass
-        elif self.rotation_style == "left-right":
-            if self.direction < 0:
-                self.pil_img_edited = self.pil_img_edited.transpose(Image.FLIP_LEFT_RIGHT)
+        elif self._rotation_style == "left-right":
+            if self._direction < 0:
+                self._pil_img_edited = self._pil_img_edited.transpose(Image.FLIP_LEFT_RIGHT)
 
     def update_sprite(self):
-        if self.visible:
+        if self._visible:
             self.update_costume()
             self.update_size()
             self.update_rotation()
-            self.tk_img = ImageTk.PhotoImage(self.pil_img_edited)
-            self.canvas.canvas.itemconfig(self.canvas_img, image=self.tk_img, state="normal")
+            self._tk_img = ImageTk.PhotoImage(self._pil_img_edited)
+            self._canvas.canvas.itemconfig(self._canvas_img, image=self._tk_img, state="normal")
         else:
-            self.canvas.canvas.itemconfig(self.canvas_img, state="hidden")
+            self._canvas.canvas.itemconfig(self._canvas_img, state="hidden")
             
 
 
