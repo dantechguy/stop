@@ -1,10 +1,3 @@
-converting code
-  should make child of sprite class
-  new method per script
-  new file per sprite
-  backdrop file
-  main.py contains project object
-
 make sprite_code methods unbreakable
 
 cache costume edits:
@@ -21,22 +14,10 @@ convert svg>png, scale properly
 
 build backdrop / project costume support
 
-different code generation modes:
-  one contained file
-  spread across multiple files
-
 blocks to make:
-  clone
-  when i start as clone
   stop this sprite
-  stop this script > 'return'
-  touching color
-  colour is touching colour
-  --  just finished 'distance' in list
-
-create clone system
-  one clone function per sprite
-  first arguement in function is self reference
+  send broadcast and wait
+  days since 2000
 
 global variables:
   stored in project/backdrop as attributes with 'v_' prefix

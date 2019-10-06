@@ -17,9 +17,13 @@ class Sprite:
     costumes = self.sprite_json['costumes']
     costume_code = self.generate_costume_code()
 
-    sprite_creation_code = '{0}{1} = stop.Sprite({2}, costumes={3})'.format(
-      prefs.sprite_variable_prefix, 
-      self.sprite_name,
+    sprite_class_code = 'class {0}{1}'.format(
+      prefs.class_name_prefix,
+      
+      )
+
+    sprite_creation_code = '{0} = stop.Sprite({1}, costumes={2})'.format(
+      self.sprite_variable_name,
       prefs.project_variable_name,
       prefs.init_costume_variable_name
     )
@@ -203,7 +207,7 @@ class Block: # pass a single json block
     return return_inputs
 
 """
-<md5 id>: {}
+<md5 id>: {
   'opcode': <opcode>,
   'inputs': {
     <input name>: [<index>, [<value type>, <value>]],
@@ -212,7 +216,7 @@ class Block: # pass a single json block
   'fields': {
     <field name>: [<choice>, <additional info>]
   },
-
+}
 
 
 <value type>:

@@ -2,7 +2,7 @@ import math
 
 abso = abs
 
-def typ(val):
+def _typ(val):
     if val in (True, False, 'true', 'false'):
         return 'bool'
     else:
@@ -14,20 +14,20 @@ def typ(val):
         except ValueError:
             return 'str'
 
-def c2t(val): # convert to type
-    if typ(val) == 'str':
+def _c2t(val): # convert to type
+    if _typ(val) == 'str':
         return str(val)
-    elif typ(val) == 'float':
+    elif _typ(val) == 'float':
         return float(val)
-    elif typ(val) == 'int':
+    elif _typ(val) == 'int':
         return int(val)
-    elif typ(val) == 'bool':
+    elif _typ(val) == 'bool':
         return bool_str(val)
 
 
 def s20(val): # string to 0
-    converted_val = c2t(val)
-    if typ(val) == 'str':
+    converted_val = _c2t(val)
+    if _typ(val) == 'str':
         return 0
     else:
         return val
@@ -67,7 +67,7 @@ def compare_char_values(val1, val2):
 
 
 def bool_str(val):
-    if typ(val) == 'bool':
+    if _typ(val) == 'bool':
         return str(val).lower()
     else:
         return str(val)
@@ -100,8 +100,8 @@ def mod(val1, val2):
     return val1 % val2
 
 def gt(val1, val2):
-    type1 = typ(val1)
-    type2 = typ(val2)
+    type1 = _typ(val1)
+    type2 = _typ(val2)
     if type1 == 'str' and type2 == 'str':
         val1, val2 = compare_char_values(val1, val2)
     elif type1 == 'str':
@@ -112,8 +112,8 @@ def gt(val1, val2):
     return result
 
 def lt(val1, val2):
-    type1 = typ(val1)
-    type2 = typ(val2)
+    type1 = _typ(val1)
+    type2 = _typ(val2)
     if type1 == 'str' and tbool_strype2 == 'str':
         val1, val2 = compare_char_values(val1, val2)
     elif type1 == 'str':
@@ -124,17 +124,17 @@ def lt(val1, val2):
     return result
 
 def eq(val1, val2):
-    result = c2t(val1) == c2t(val2)
+    result = _c2t(val1) == _c2t(val2)
     return result
 
 def join(val1, val2):
     result = '{0}{1}'.format(val1, val2)
     return result
 
-def letter(val, index):
+def letter(index val):
     if index-1 not in range(len(bool_str(val))):
         return ''
-    result = bool_str(val)[c2t(index)-1]
+    result = bool_str(val)[_c2t(index)-1]
     return result
 
 def contains(val1, val2):
@@ -204,3 +204,6 @@ def e2x(val):
 def ten2x(val):
     result = 10**(s20(val))
     return result
+
+def pick_random_to(self, n1, n2):
+    return random.randint(n1, n2)

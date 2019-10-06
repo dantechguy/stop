@@ -4,42 +4,31 @@ from . import scratch_math as v
 path = "{0}/../assets/".format(__file__) # replace with prefs file
 
 class Sprite:
-    def __init__(self, 
-                    project, 
-                    layer_order=1, 
-                    visible=True, 
-                    draggable=False,
-                    rotation_style='all around',
-                    costumes=[
-                        {"file":"{0}costume1.png".format(path), "name":"costume1"}, 
-                        {"file":"{0}costume2.png".format(path), "name":"costume2"}
-                    ],
-                    x=0,
-                    y=0,
-                    size=100,
-                    direction=90,
-                    costume_number=0,
-                    volume=100
-                ):
+    def __init__(self, project, **kwargs):
         self.project = project
 
-        parameters = {
-            'project': project,
-            'sprite_parent': self,
-            'layer_order': layer_order,
-            'visible': visible,
-            'draggable': draggable,
-            'rotation_style': rotation_style,
-            'costumes': costumes,
-
-            'x': x,
-            'y': y,
-            'size': size,
-            'direction': direction,
-            'costume_number': costume_number,
-            'volume': volume
+        parameters = { **{
+                'project':project,
+                'sprite_parent':self,
+                'is_clone': False,
+                'layer_order':1, 
+                'visible':True, 
+                'draggable':False,
+                'rotation_style':'all around',
+                'costumes':[
+                    {"file":"{0}costume1.png".format(path), "name":"costume1"}, 
+                    {"file":"{0}costume2.png".format(path), "name":"costume2"}
+                ],
+                'x':0,
+                'y':0,
+                'size':100,
+                'direction':90,
+                'costume_number':0,
+                'volume':100,
+                'answer':''
+            },
+            **kwargs
         }
-
         self.sprite_code = sprite_code.SpriteCode(parameters)
         
 
@@ -47,16 +36,16 @@ class Sprite:
         def wrapper(*args):
             function_name = name
             function_arguements = args
-            self.add_instruction_to_queue(function_name, *function_arguements)
+            self._add_instruction_to_queue(function_name, *function_arguements)
         return wrapper
 
-    def add_instruction_to_queue(self, block, *parameters):
+    def _add_instruction_to_queue(self, block, *parameters):
         item_function = getattr(self.sprite_code, block)
         item = {
             'function': item_function,
             'parameters': parameters
         }
-        self.project.queue.put(item)
+        self.project.add_instruction_to_queue(item)
 
     
     # return functions
@@ -75,6 +64,9 @@ class Sprite:
 
     def size(self):
         return self.sprite_code._size
+
+    def costume_name(self):
+        return self.sprite_code._costumes[self.costume('number')]['name']
 
     def costume_number(self):
         return self.sprite_code._costume_number
@@ -95,3 +87,6 @@ class Sprite:
         dy = y2 - y1
         distance = v.sqrt(v.add(v.mul(dx, dx), v.mul(dy, dy)))
         return distance
+
+    def answer(self):
+        return self.sprite_code._answer

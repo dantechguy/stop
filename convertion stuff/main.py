@@ -2,8 +2,7 @@ import extract_files
 from prefs import prefs
 
 def main(sb3_url):
-  temp_folder_name = prefs.temp_folder_name
-  extract_files.extract_files_and_create_temp_folder(sb3_url, temp_folder_name)
+  extract_files.extract_files_and_create_temp_folder(sb3_url)
 
   custom_code = ''
 
