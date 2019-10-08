@@ -1,19 +1,37 @@
-import prefs
+from prefs import prefs 
 import scripts
 
 class Sprite:
     def __init__(self, json_dictionary, target_index):
         self.all_json = json_dictionary
-        self.target_index
+        self.target_index = target_index
         self.json = json_dictionary['targets'][target_index]
 
+        self.name = self.json['name']
         self.attributes = self.get_attributes()
 
         self.scripts = scripts.Scripts(self.all_json, self.target_index)
 
 
     def generate_code(self):
-        return ''
+        code = '''class {0}{1}(stop.Sprite):
+    def __init__(self, project, *args):
+        super().__init__(project, args[0])
+{2}
+
+{3}
+
+{4}{0} = {0}{1}({5}, {6})'''.format(
+            prefs['class_name_prefix'],
+            self.name,
+            self.scripts.generate_event_adders_code(),
+            self.scripts.generate_scripts_code(),
+            prefs['sprite_variable_prefix'],
+            prefs['project_variable_name'],
+            str(self.attributes).replace(', ', ',\n{0}'.format(prefs['indent']))
+        )
+        return code
+
 
 
     def get_attributes(self):
@@ -38,7 +56,7 @@ class Sprite:
         for costume_json in self.json['costumes']:
             costume_dictionary = {
                 'name':         costume_json['name'],
-                'file':         '{0}{1}.png'.format(prefs.costume_file_directory, costume_json['assetId']),
+                'file':         '{0}{1}.png'.format(prefs['costume_file_directory'], costume_json['assetId']),
                 'rotation_x':   costume_json['rotationCenterX'],
                 'rotation_y':   costume_json['rotationCenterY']
             }
@@ -69,3 +87,4 @@ class Sprite:
     "volume": 100,
     "size": 100
 }
+"""

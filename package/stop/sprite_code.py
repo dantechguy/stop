@@ -14,7 +14,7 @@ class SpriteCode:
         self._touching_mouse =      False
         # private builtin
         self._layer_order =         parameters['layer_order']       # number
-        self._is_clone              parameters['is_clone']
+        self._is_clone =            parameters['is_clone']
         self._visible =             parameters['visible']           # true / false
         self._draggable =           parameters['draggable']         # True / False
         self._rotation_style =      parameters['rotation_style']    # Left-Right / Dont Rotate / All Around
@@ -209,6 +209,7 @@ class SpriteCode:
         self._update_sprite()
 
     def go_to_front_layer(self):
+        pass
 
     def go_to_back_layer(self):
         pass
@@ -308,7 +309,7 @@ class SpriteCode:
             'project':          self._project,
             # sprite_parent is added in 'clone' function
             'layer_order':      self._layer_order,
-            'is_clone':         True
+            'is_clone':         True,
             'visible':          self._visible,
             'draggable':        self._draggable,
             'rotation_style':   self._rotation_style,

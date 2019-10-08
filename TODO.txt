@@ -1,3 +1,7 @@
+create assets folder
+
+allow downloading from internet
+
 make sprite_code methods unbreakable
 
 cache costume edits:
@@ -12,16 +16,16 @@ cache costume edits:
 convert svg>png, scale properly
   scratch site makes png's 2x as big
 
-build backdrop / project costume support
-
 blocks to make:
   stop this sprite
   send broadcast and wait
   days since 2000
 
-global variables:
+build backdrop support
+  global variables
   stored in project/backdrop as attributes with 'v_' prefix
   at start of script generation, create list of globals
+  backdrop images
 
 
 2.0 json

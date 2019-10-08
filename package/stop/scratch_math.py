@@ -131,7 +131,7 @@ def join(val1, val2):
     result = '{0}{1}'.format(val1, val2)
     return result
 
-def letter(index val):
+def letter(index, val):
     if index-1 not in range(len(bool_str(val))):
         return ''
     result = bool_str(val)[_c2t(index)-1]
