@@ -1,5 +1,5 @@
-import conversion_tables
-from prefs import prefs
+from . import conversion_tables
+from .prefs import prefs
 
 class Block:
     def __init__(self, parent_script, all_json, target_index, block_md5):
@@ -51,7 +51,10 @@ class Block:
     def format_fields_in_code(self, code):
         field_dictionary = self.generate_field_dictionary()
         for key in field_dictionary:
-            find_term = '{{{0}}}'.format(key)
+            if type(key).__name__ == 'str': # key needs to have '{}' around it
+                find_term = '{{{0}}}'.format(key)
+            elif type(key).__name__ == 'tuple': # key 
+                find_term = key[0]
             replace_term = field_dictionary[key]
             code = code.replace(find_term, replace_term)
         return code
@@ -81,8 +84,8 @@ class Block:
             'indent': prefs['indent'] * self.indent_level,
             'extra_indent': prefs['indent'] * (self.indent_level+1),
             'sprite_variable_name': self.name,
-            '_mouse_': 'mouse_pointer',
-            '_random_': 'random_position'
+            ('_mouse_',): '\'mouse_pointer\'',
+            ('_random_',): '\'random_position\''
         }
         if self.top_level:
             custom_fields['current_method_count'] = str(self.parent_script.event_method_counts[self.opcode])

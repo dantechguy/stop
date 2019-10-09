@@ -4,7 +4,7 @@ from . import scratch_math as v
 path = "{0}/../assets/".format(__file__) # replace with prefs file
 
 class Sprite:
-    def __init__(self, project, *args):
+    def __init__(self, project, parameters):
         self.project = project
 
         parameters = {
@@ -26,7 +26,7 @@ class Sprite:
                 'costume_number':0,
                 'volume':100,
                 'answer':'',
-                **args[0]
+                **parameters
             }
             
         self.sprite_code = sprite_code.SpriteCode(parameters)

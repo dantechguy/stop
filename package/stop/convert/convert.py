@@ -1,6 +1,6 @@
 import json
-import sprite
-from prefs import prefs
+from . import sprite
+from .prefs import prefs
 
 def generate_code(json_string):
     json_dictionary = json.loads(json_string)

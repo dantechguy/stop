@@ -1,4 +1,4 @@
-import block
+from . import block
 
 class Scripts:
     def __init__(self, all_json, target_index):

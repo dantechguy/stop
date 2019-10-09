@@ -1,17 +1,17 @@
-from prefs import prefs
+from .prefs import prefs
 
 block_to_code = {
               'motion_movesteps': {'code': '{indent}self.move_steps({steps})\n'},
               'motion_turnright': {'code': '{indent}self.turn_right_degrees({degrees})\n'},
                'motion_turnleft': {'code': '{indent}self.turn_left_degrees({degrees})\n'},
        'motion_pointindirection': {'code': '{indent}self.point_in_direction({direction})\n'},
-      'motion_pointtowards_menu': {'code': '{towards}\n'},
+      'motion_pointtowards_menu': {'code': '{towards}'},
            'motion_pointtowards': {'code': '{indent}self.point_towards({towards})\n'},
-              'motion_goto_menu': {'code': '{to}\n'},
+              'motion_goto_menu': {'code': '{to}'},
                  'motion_gotoxy': {'code': '{indent}self.go_to_x_y({x}, {y})\n'},
                    'motion_goto': {'code': '{indent}self.go_to({to})\n'},
           'motion_glidesecstoxy': {'code': '{indent}self.glide_seconds_x_y({secs}, {x}, {y})\n'},
-           'motion_glideto_menu': {'code': '{to}\n'},
+           'motion_glideto_menu': {'code': '{to}'},
                 'motion_glideto': {'code': '{indent}self.glide_seconds_to({to}, {secs})\n'},
               'motion_changexby': {'code': '{indent}self.change_x_by({dx})\n'},
                    'motion_setx': {'code': '{indent}self.set_x_to({x})\n'},

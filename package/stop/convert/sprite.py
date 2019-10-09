@@ -1,5 +1,5 @@
-from prefs import prefs 
-import scripts
+from .prefs import prefs
+from . import scripts
 
 class Sprite:
     def __init__(self, json_dictionary, target_index):
