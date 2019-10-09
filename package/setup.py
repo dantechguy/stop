@@ -5,10 +5,10 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="stop",
-    version="0.0.9",
+    version="0.0.11",
     author="Daniel Wendon-Blixrud",
     author_email="d@nielwb.com",
-    description="Scratch in Python, and conversion",
+    description="Scratch to Python converter and creator",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/dantechguy/stop",
