@@ -1,3 +1,3 @@
 ### Converting Scratch blocks to Python S.To.P code
 
-![move_steps](./blocks/move_steps.png)
+<img src="./blocks/move_steps.png" height="100px">
