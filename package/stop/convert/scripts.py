@@ -21,7 +21,7 @@ class Scripts:
         self.scripts, self.event_adders = self.get_scripts_and_event_adders()
 
     def generate_event_adders_code(self):
-        return '\n'.join(self.event_adders)
+        return ''.join(self.event_adders)
 
     def generate_scripts_code(self):
         return '\n\n'.join(self.scripts)

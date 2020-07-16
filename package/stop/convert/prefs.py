@@ -1,9 +1,10 @@
 prefs = {
-    'sb3_url': 'C:/Users/danie/Documents/code/python/stop/convertion stuff/assets.sb3',
-    'code_file_url': '../package/CONVERTED_CODE.py',
+    'sb3_url': 'C:/Users/danie/Documents/code/python/small projects/stop test/assets.sb3',
+    'output_folder_url': 'C:/Users/danie/Documents/code/python/stop/package/',
+    'code_file_name': 'CONVERTED_CODE.py',
+    'assets_folder_name': 'assets',
 
-    'temp_folder_name': '.temp',
-    'costume_file_directory': 'assets/', # end with '/'
+    # 'temp_folder_name': '.temp',
     'col_option': 'colour',
     'indent': '    ',
 

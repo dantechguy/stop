@@ -99,7 +99,7 @@ class Block:
                 block_md5 = value[0]
                 temporary_block = self.parent_script.blocks[block_md5]
                 value = temporary_block.generate_script_code(self.indent_level + 1) # increase indent as its nested
-            formatted_input_fields[key] = value
+            formatted_input_fields[key] = str(value)
         return formatted_input_fields
 
     def generate_below_code(self):
@@ -156,19 +156,21 @@ class Block:
         for input_key in input_json:
             first_value = input_json[input_key][0]
             first_value_type = type(first_value).__name__
-            second_value = input_json[input_key][1]
-            second_value_type = type(second_value).__name__
 
             if first_value_type == 'str': # is field
-                input_value = first_value
+                input_value = '\'{0}\''.format(first_value)
 
-            elif second_value_type == 'list': # is value
-                input_value = second_value[1]
+            else:
+                second_value = input_json[input_key][1]
+                second_value_type = type(second_value).__name__
 
-            elif second_value_type == 'str': # is md5 id
-                input_value = [second_value] # make it a list, so you know its an md5 value
+                if second_value_type == 'list': # is value
+                    input_value = second_value[1]
 
-            return_inputs[input_key.lower()] = input_value
+                elif second_value_type == 'str': # is md5 id
+                    input_value = [second_value] # make it a list, so you know its an md5 value
+
+            return_inputs[input_key.lower()] = input_value # dont typecast to string since wont recognise list (md5)
 
         return return_inputs
 

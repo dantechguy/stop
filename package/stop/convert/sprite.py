@@ -56,7 +56,7 @@ class Sprite:
         for costume_json in self.json['costumes']:
             costume_dictionary = {
                 'name':         costume_json['name'],
-                'file':         '{0}{1}.png'.format(prefs['costume_file_directory'], costume_json['assetId']),
+                'file':         '{0}/{1}.png'.format(prefs['assets_folder_name'], costume_json['assetId']),
                 'rotation_x':   costume_json['rotationCenterX'],
                 'rotation_y':   costume_json['rotationCenterY']
             }
