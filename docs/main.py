@@ -91,7 +91,11 @@ def convert(in_folder, out_folder):
         out_url = image_url_dict['out']
         pillow_image = Image.open(in_url)
         trimmed_image = trim_image(pillow_image)
-        trimmed_image.save(out_url)
+        size = trimmed_image.size
+        scale = 0.4
+        resize = (int(size[0]*scale), int(size[1]*scale))
+        resized_image = trimmed_image.resize( resize )
+        resized_image.save(out_url)
         print('[{0}]'.format('#'*index+' '*(len(image_urls)-1-index)), end='\r')
     print()
 
