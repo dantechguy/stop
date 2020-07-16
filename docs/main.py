@@ -92,7 +92,11 @@ def convert(in_folder, out_folder):
         pillow_image = Image.open(in_url)
         trimmed_image = trim_image(pillow_image)
         size = trimmed_image.size
+<<<<<<< HEAD
         scale = 1
+=======
+        scale = 0.2
+>>>>>>> a222d9ef91afe87096bf5c6f109f0a74a19e1912
         resize = (int(size[0]*scale), int(size[1]*scale))
         resized_image = trimmed_image.resize( resize )
         resized_image.save(out_url)
