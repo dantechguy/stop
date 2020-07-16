@@ -388,3 +388,38 @@ project.run()
 **Arguments:**
 - (required) `message`
   - The message to broadcast
+
+---
+
+### `Project.send_broadcast_and_wait()` <img src="./tblocks/send_broadcast_and_wait.png" height="30px">
+
+**Description:**
+Broadcasts a message for others to receive, and waits until all other scripts from it have finished.
+
+<img src="./tscripts/send_broadcast_and_wait.png" height="200px">
+
+```python
+import stop
+
+project = stop.Project()
+
+# creates a script
+def on_green_flag():
+    project.send_broadcast_and_wait('wait and change')
+
+# creates a script
+def wait_and_change_backdrop():
+    # wait 5 seconds
+    project.wait(5)
+    # move to next backdrop
+    project.next_backdrop()
+
+# makes 'on_green_flag' run when the project starts
+project.green_flag(on_green_flag)
+# makes 'wait_and_change_backdrop' run when the 'wait and change' message is broadcasted
+project.broadcast_received(wait_and_change_backdrop, 'wait and change')
+project.run()
+```
+**Arguments:**
+- (required) `message`
+  - The message to broadcast
