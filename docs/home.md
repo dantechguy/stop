@@ -1,12 +1,8 @@
-### Introduction to the `Project` object
+## Overview of the `Project` object
 
 The `Project` object is the first thing you make when creating a S.To.P project. It is the central 'hub' for everything related to the current project, including executing code and storing information. You can think of it as the screen, with all of the sprites being inside it.
 
-<br>
-
 ## Methods
-
-<br>
 
 ### Create a `Project`
 
