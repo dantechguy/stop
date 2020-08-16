@@ -1,77 +1,90 @@
-import threading
+import inspect
+from . import error
 
-class Events:
-    def __init__(self):
-        self.green_flag_events = {'all':[]}
-        self.key_pressed_events = {}
-        self.sprite_clicked_events = {}
-        self.backdrop_switches_to_events = {}
-        self.loudness_more_than_events = {}
-        self.timer_more_than_events = {}
-        self.receive_broadcast_events = {}
+class EventHandler:
+    def __init__(self, event_names):
+        self._events = {
+            event_name: Event(event_name)
+            for event_name in event_names
+        }
+        self._function_tag_name = '_events'
+    
+    def run(self, event_name):
+        event = self._get_event(event_name)
+        event.run()
+        
+    def subscribe_tagged_methods(self, object):
+        for method_name in dir(object):
+            method = getattr(object, method_name)
+            event_names = getattr(method, self._function_tag_name, [])
+            for event_name in event_names:
+                self._get_event(event_name).subscribe_function(method)
+    
+    def __getattr__(self, event_name): # decorator function
+        if self._event_exists(event_name):
+            return self._get_event_function_subscriber_decorator(event_name)
+        else:
+            error.raise('wrongEventName', event_name)
+            
+    def _event_exists(self, event_name):
+        return event_name in self._events
+    
+    def _get_event_function_subscriber_decorator(self, event_name):
+        event = self._get_event(event_name)
+        def decorator(function):
+            wrapped_function = FunctionWrapper(function)
+            self._handle_decorator_function_subscription(event, wrapped_function)
+            return wrapped_function.function
+        return decorator
+        
+    def _get_event(self, event_name):
+        return self._events[event_name]
+        
+    def _handle_decorator_function_subscription(self, event, wrapped_function):
+        if wrapped_function.has_no_parameters():
+            event.subscribe_function(wrapped_function.function)
+        elif wrapped_function.has_one_parameter():
+            error.raise('tooManyEventFunctionParameters', wrapped_function.get_name())
+        else:
+            wrapped_function.tag_for_later_subscription(self._function_tag_name, event.name)
 
-    # ADD EVENTS
 
-    def add_green_flag_event(self, function):
-        self._add_event('all', function, self.green_flag_events)
 
-    def add_key_pressed_event(self, key, function):
-        self._add_event(key, function, self.key_pressed_events)
+class Event:
+    def __init__(self, name):
+        self.name = name
+        self._functions = set()
+        
+    def run(self):
+        for function in self._functions:
+            function()
+        
+    def subscribe_function(self, function):
+        self._functions.add(function)
+        
+    def subscribe_function_if_has_no_parameters(self, wrapped_function):
+        if wrapped_function.has_no_parameters():
+            self.subscribe_function(function)
 
-    def add_sprite_clicked_event(self, sprite, function):
-        self._add_event(sprite, function, self.sprite_clicked_events)
-
-    def add_backdrop_switches_to_event(self, backdrop_name, function):
-        pass
-
-    def add_loudness_more_than_event(self, loudness, function):
-        pass
-
-    def add_timer_more_than_event(self, timer, function):
-        pass
-
-    def add_receive_broadcast_event(self, message, function):
-        self._add_event(message, function, self.receive_broadcast_events)
-
-    def _add_event(self, key, function, events_list):
-        if key not in events_list:
-            events_list[key] = []
-        events_list[key].append(function)
-
-    # SEND EVENTS
-
-    def send_green_flag_event(self):
-        self._send_event('all', self.green_flag_events)
-
-    def send_key_pressed_event(self, key):
-        self._send_event(key, self.key_pressed_events)
-
-    def send_sprite_clicked_event(self, sprite):
-        self._send_event(sprite, self.sprite_clicked_events)
-
-    def send_backdrop_switches_to_event(self, backdrop_name):
-        self._send_event(backdrop_name, self.backdrop_switches_to_events)
-
-    def send_loudness_more_than_event(self, loudness):
-        self._send_event(loudness, self.loudness_more_than_events)
-
-    def send_timer_more_than_event(self, timer):
-        self._send_event(timer, self.timer_more_than_events)
-
-    def send_receive_broadcast_event(self, message):
-        self._send_event(message, self.receive_broadcast_events)
-
-    def send_receive_broadcast_event_and_wait(self, message):
-        pass
-
-    def _send_event(self, key, events_list):
-        if key in events_list:
-            specific_events_list = events_list[key]
-
-            threads = []
-            for method in specific_events_list:
-                temp_thread = threading.Thread(target=method, daemon=True)
-                threads.append(temp_thread)
-
-            for thread in threads:
-                thread.start()
+        
+        
+class FunctionWrapper:
+    def __init__(self, function):
+        self.function = function
+        
+    def get_name(self):
+        return self.function.__name__
+        
+    def tag_for_later_subscription(self, attribute_name, event_name):
+        list_of_event_names = getattr(self.function, attribute_name, [])
+        list_of_event_names.append(event_name)
+        setattr(self.function, attribute_name, list_of_event_names)
+        
+    def has_no_parameters(self):
+        return self.number_of_parameters() == 0
+        
+    def has_one_parameter(self):
+        return self.number_of_parameters() == 1
+        
+    def number_of_parameters(self):
+        return len(inspect.signature(self.function).parameters)
