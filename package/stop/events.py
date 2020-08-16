@@ -24,7 +24,7 @@ class EventHandler:
         if self._event_exists(event_name):
             return self._get_event_function_subscriber_decorator(event_name)
         else:
-            error.raise('wrongEventName', event_name)
+            error.throw('wrongEventName', event_name)
             
     def _event_exists(self, event_name):
         return event_name in self._events
@@ -44,9 +44,9 @@ class EventHandler:
         if wrapped_function.has_no_parameters():
             event.subscribe_function(wrapped_function.function)
         elif wrapped_function.has_one_parameter():
-            error.raise('tooManyEventFunctionParameters', wrapped_function.get_name())
-        else:
             wrapped_function.tag_for_later_subscription(self._function_tag_name, event.name)
+        else:
+            error.throw('tooManyEventFunctionParameters', wrapped_function.get_name())
 
 
 
